@@ -1,0 +1,134 @@
+<html>
+    <head>
+        <title>
+            POP ERC
+        </title>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="google-signin-client_id" content="672947975415-7rtkqsivtsp2qgnneqeo2kven2rrp6s5.apps.googleusercontent.com">
+        <link href="https://fonts.googleapis.com/css?family=Baloo+2|Bitter|Bungee+Outline|Cabin|Josefin+Sans&display=swap" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+
+
+        <style>
+
+
+            body{
+                background-color: 	lightblue;
+            }
+
+             #sub-btn{
+                display: none;
+            }
+
+            
+
+            h1{
+                font-family: 'Bungee Outline', cursive;
+                font-size: 500%;
+                font-weight: bolder;
+                word-spacing: 0.5em;
+                text-align: center;
+                text-decoration: underline;
+            }
+
+            #big-box{
+                margin: 10%;
+            }
+
+            .button{
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 40%;
+
+            }
+            
+            .info{
+                margin-top: 5%;
+                font-family: 'Cabin', sans-serif;
+                font-sixe:200%;
+                color: navy;
+                text-align: center;
+            }
+
+            .more{
+                color: blue;
+                text-decoration: underline;
+            }
+
+            #imag{
+                height: 400px;
+
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>POP ERC</h1>
+
+            <div class = "row" id = "big-box">
+                <div class= "col">
+                    <img src = "http://127.0.0.1:8001/brand_images/img/robot.svg" id = "imag">
+                </div>    
+
+                <div id = "box" class = "col" >
+
+                    <p  class = "h4 info">This is a simple poll with data related ot ERC. You'll be given a some pictorial options to choose your heart for most interesting (more stupid) 9 questions related to ERC. But let me promise you, result will be fun. </p>
+
+                    <p class = "info more">To get started, just login with your google account. This is just to make sure you are authentic, we just don't wanna go through all that lengthy registration process.</p>
+                    <div class = "button">
+                        <div class="g-signin2" data-onsuccess="onSignIn" class = "button" id = "log-btn"></div>
+                    </div>
+                   
+
+                    <form method = "post" id = "form">
+                        {% csrf_token %}
+                        <input type = "hidden" id = "name" value = "" name = "name" /> <input type = "hidden" id = "email" value = "" name = "email" /><input type = "hidden" id = "img" value = "" name = "img"/> 
+                        <button type= "submit" class = "btn btn-primary button" id = "sub-btn"> Start Voting </button>
+                    </form>
+                </div>
+
+        </div>
+    </body>
+
+
+
+
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail());
+            console.log(profile)
+
+            document.getElementById("name").value = profile.getName();
+            document.getElementById("email").value = profile.getEmail();
+            document.getElementById("img").value = profile.getImageUrl();
+
+            document.getElementById("sub-btn").style.display = "block";
+            document.getElementById("name").style.display = "block";
+            document.getElementById("log-btn").style.display = "none";
+
+            }
+
+
+
+            function signOut() {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                console.log('User signed out.');
+                });
+
+            }
+
+    </script>
+</html>

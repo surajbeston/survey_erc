@@ -1,0 +1,160 @@
+<html>
+    <head>
+        <title>
+            POP ERC
+        </title>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="google-signin-client_id" content="672947975415-1j2f5iuvi4agg6t3b8hvr7vk8oovgr05.apps.googleusercontent.com">
+        <link href="https://fonts.googleapis.com/css?family=Baloo+2|Bitter|Bungee+Outline|Cabin|Josefin+Sans&display=swap" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+
+
+        <style>
+
+
+            body{
+                background-color: 	lightblue;
+            }
+
+            h1{
+                font-family: 'Bungee Outline', cursive;
+                font-size: 500%;
+                font-weight: bolder;
+                word-spacing: 0.5em;
+                text-align: center;
+                text-decoration: underline;
+            }
+
+            .option-wrap{   
+            }
+
+            .option-wrap:hover{
+                background-color: CadetBlue;
+                cursor: pointer;
+                
+            }
+
+            .img-wrap{
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 80%;
+                height: 350px; 
+            }
+
+            .image{
+                height: 350px;
+                width: 90%;
+            }
+
+            .option-text{
+                font-weight: bold;
+                text-align: center;
+
+            }
+
+            h3{
+                font-family: 'Cabin', sans-serif;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            #button1{
+                display: none;
+            }
+
+            #button-wrap{
+                display: block;
+                margin-left: 45%;
+                margin-right: auto;
+                width: 80%;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>POP ERC</h1>
+
+
+        <hr />
+
+        <h3 class = "h1" id = "question-text"> {{question}} {{error}}</h3>
+
+        <hr />
+
+        <div class = "row">
+            {% for option in options %}
+            <div class = "col-lg-4 col-md-6">
+                <div class = "option-wrap" onmouseover="startTimer(this)" onclick="select(this)" onmouseout="stopTimer(this)">
+                    <div class = "img-wrap">
+                        <img src = "{{option.1}}" class = "image">
+                    </div>
+                    <div>
+                        <h2 class = "h2 option-text" >{{ option.0 }}</h2>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div>
+            <form method = "post">
+                {% csrf_token %}
+                <input type = "hidden" name = "question" value = "" id = "question" /><input type = "hidden" name = "answer" id = "answer" /> <input type="hidden" name= "time" id = "time">
+                <div id = "button-wrap"><button class = "btn btn-success btn-lg" id = "button1">Next</button></div>
+            </form>
+        </div>
+
+        <script>
+
+            var last_time = 0
+            var last_clicked = 0;
+            var selected = false
+            function startTimer(e){
+                console.log("mouse over... bro")
+                last_time = Date.now()
+                if (last_clicked !== e){
+                e.style.backgroundColor = "LightGreen"
+                }
+            }
+
+            function stopTimer(elem){
+                console.log("mouse released... bro")
+                if (last_clicked !== elem){
+                    elem.style.backgroundColor = "transparent"
+                }
+                var time_dur = Date.now() - last_time
+                var text = elem.children[1].innerText
+                var time_bucket = document.getElementById("time")
+                time_bucket.value  =  time_bucket.value + "{" + "\"" + text + "\"" + ':'+ time_dur + '}' + ','
+            }
+
+            function select(elem){
+                if (last_clicked !== 0){
+                    last_clicked.style.backgroundColor = "transparent";
+                }
+                elem.style.backgroundColor = "limegreen";
+                last_clicked = elem
+
+                var question_text = document.getElementById("question-text").innerText
+                var answer_text = elem.children[1].innerText
+                document.getElementById("question").value = question_text
+                document.getElementById("answer").value = answer_text
+
+                document.getElementById("button1").style.display = "block"
+
+                console.log(document.getElementById("question").value)
+                console.log(document.getElementById("answer").value)
+           
+            }
+
+        </script>
+    </body>
+
+</html>
