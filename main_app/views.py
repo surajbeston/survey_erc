@@ -37,9 +37,10 @@ def home(request):
             obj = User.objects.filter(email = email)
             try:
                 user = User(full_name = name, email = email, image = image)
+                user.save()
             except:
-                return HttpResponse("Looks like you've already voted.") 
-            user.save()
+                return HttpResponse("Looks like you're already registered...") 
+
             print ("reached here1 ")
             request.session["email"] = email
             arr_natural = [0, 1, 2, 3, 4, 5, 6, 7, 8]
