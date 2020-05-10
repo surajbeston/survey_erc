@@ -35,7 +35,10 @@ def home(request):
             email = request.POST["email"]
             image = request.POST["img"]
             obj = User.objects.filter(email = email)
-            user = User(full_name = name, email = email, image = image)
+            try:
+                user = User(full_name = name, email = email, image = image)
+            except:
+                return HttpResponse("Looks like you've already voted.") 
             user.save()
             print ("reached here1 ")
             request.session["email"] = email
