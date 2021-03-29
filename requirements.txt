@@ -223,7 +223,7 @@ PyDispatcher==2.0.5
 pyethash==0.1.27
 pyflakes==2.1.1
 pygame==1.9.6
-Pygments==2.5.2
+Pygments==2.7.4
 PyHamcrest==2.0.0
 pylint==2.3.1
 pymdown-extensions==6.2.1
