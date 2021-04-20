@@ -206,7 +206,7 @@ protobuf==3.11.2
 psutil==5.6.1
 psycopg2-binary==2.8.4
 ptyprocess==0.6.0
-py==1.8.1
+py==1.10.0
 py-ecc==1.7.1
 py-evm==0.3.0a8
 pyasn1==0.4.8
