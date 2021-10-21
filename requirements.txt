@@ -16,7 +16,7 @@ attrs==19.3.0
 autobahn==20.1.2
 Automat==0.8.0
 autopy==4.0.0
-Babel==2.6.0
+Babel==2.9.1
 backcall==0.1.0
 backports.os==0.1.1
 backports.shutil-get-terminal-size==1.0.0
