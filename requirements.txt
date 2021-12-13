@@ -142,7 +142,7 @@ llvmlite==0.28.0
 loadtest==0.0.2
 locket==0.2.0
 lru-dict==1.1.6
-lxml==4.5.0
+lxml==4.6.5
 Markdown==3.1.1
 MarkupSafe==1.1.1
 matplotlib==3.0.3
