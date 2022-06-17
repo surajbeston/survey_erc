@@ -264,7 +264,7 @@ ruamel-yaml==0.15.46
 scikit-image==0.14.2
 scikit-learn==0.22
 scipy==1.4.1
-Scrapy==2.0.1
+Scrapy==2.6.1
 seaborn==0.9.0
 SecretStorage==3.1.1
 semantic-version==2.8.4
