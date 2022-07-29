@@ -147,7 +147,7 @@ Markdown==3.1.1
 MarkupSafe==1.1.1
 matplotlib==3.0.3
 mccabe==0.6.1
-mistune==0.8.4
+mistune==2.0.3
 mkdocs==1.0.4
 mkdocs-material==4.6.0
 mkdocs-minify-plugin==0.2.1
